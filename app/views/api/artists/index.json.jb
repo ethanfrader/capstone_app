@@ -1,0 +1,16 @@
+@artists.map do |artist|
+  {
+    name: artist.name,
+    bio: artist.bio,
+    location: artist.location,
+    genre: artist.genre,
+    members: artist.members,
+    email: artist.email,
+    images: artist.images,
+    music_links: artist.music_links,
+    media_links: artist.media_links,
+    users: artist.users,
+    messages: artist.messages,
+    posts: artist.posts,
+  }
+end
