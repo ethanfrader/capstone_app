@@ -11,5 +11,6 @@ Rails.application.routes.draw do
 
     get "/artists" => "artists#index"
     get "/artists/:id" => "artists#show"
+    patch "/artists/:id" => "artists#edit"
   end
 end
