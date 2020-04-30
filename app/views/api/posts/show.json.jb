@@ -1,0 +1,5 @@
+{
+  text: @post.text,
+  created_at: @post.created_at,
+  artist: @post.artist,
+}
