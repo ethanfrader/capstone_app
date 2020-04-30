@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     post "/artists" => "artists#create"
     get "/artists/:id" => "artists#show"
     patch "/artists/:id" => "artists#edit"
+    delete "/artists/:id" => "artists#destroy"
 
     get "/posts" => "posts#index"
   end

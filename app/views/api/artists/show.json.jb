@@ -1,4 +1,5 @@
 {
+  id: @artist.id,
   name: @artist.name,
   bio: @artist.bio,
   location: @artist.location,
