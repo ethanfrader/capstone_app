@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     patch "users/:id" => "users#edit"
 
     get "/artists" => "artists#index"
+    post "/artists" => "artists#create"
     get "/artists/:id" => "artists#show"
     patch "/artists/:id" => "artists#edit"
 

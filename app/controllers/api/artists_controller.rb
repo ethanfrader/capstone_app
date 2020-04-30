@@ -4,6 +4,22 @@ class Api::ArtistsController < ApplicationController
     render "index.json.jb"
   end
 
+  def create
+    @artist = Artist.new(
+      name: params["name"],
+      bio: params["bio"],
+      location: params["location"],
+      members: params["members"],
+      genre: params["genre"],
+      email: params["email"],
+    )
+    if @artist.save
+      render "show.json.jb"
+    else
+      render json: { errors: @artist.errors.full_messages }
+    end
+  end
+
   def show
     @artist = Artist.find_by(id: params["id"])
     render "show.json.jb"
