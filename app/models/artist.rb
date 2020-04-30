@@ -7,4 +7,7 @@ class Artist < ApplicationRecord
   has_many :media_links
   has_many :music_links
   has_many :posts
+
+  validates :name, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
 end
