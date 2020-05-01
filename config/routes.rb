@@ -28,5 +28,6 @@ Rails.application.routes.draw do
     delete "/images/:id" => "images#destroy"
 
     get "/music-links" => "music_links#index"
+    get "/music-links/:id" => "music_links#show"
   end
 end

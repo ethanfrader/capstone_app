@@ -1,0 +1,5 @@
+{
+  id: @music_link.id,
+  url: @music_link.url,
+  artist_id: @music_link.artist_id,
+}
