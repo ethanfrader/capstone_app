@@ -22,4 +22,10 @@ class Api::MusicLinksController < ApplicationController
     @music_link = MusicLink.find_by(id: params["id"])
     render "show.json.jb"
   end
+
+  def destroy
+    authenticate_user
+    music_link = current_user.artists.find_by(id: params["artist_id"]).music_links.find_by(id: params["id"])
+    render json: { message: "Link deleted" }
+  end
 end

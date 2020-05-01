@@ -30,5 +30,6 @@ Rails.application.routes.draw do
     get "/music-links" => "music_links#index"
     post "/music-links" => "music_links#create"
     get "/music-links/:id" => "music_links#show"
+    delete "/music-links/:id" => "music_links#destroy"
   end
 end
