@@ -21,4 +21,10 @@ class Api::PostsController < ApplicationController
     @post = Post.find_by(id: params["id"])
     render "show.json.jb"
   end
+
+  def destroy
+    post = Post.find_by(id: params["id"])
+    post.destroy
+    render json: { message: "Post deleted" }
+  end
 end
