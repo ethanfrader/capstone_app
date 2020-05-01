@@ -4,7 +4,7 @@ class Api::ArtistsController < ApplicationController
     render "index.json.jb"
   end
 
-  def create
+  def create #this needs a user_id validation, need user authorization first
     @artist = Artist.new(
       name: params["name"],
       bio: params["bio"],
