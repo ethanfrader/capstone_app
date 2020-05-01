@@ -6,8 +6,9 @@ class Api::ImagesController < ApplicationController
 
   def create
     authenticate_user
+    current_artist = current_user.artists.find_by(id: params["artist_id"])
     @image = Image.new(
-      artist_id: current_user.artists.find_by(artist_id: params("artist_id")),
+      artist_id: current_artist.id,
       url: params["url"],
     )
     if @image.save
@@ -20,5 +21,12 @@ class Api::ImagesController < ApplicationController
   def show
     @image = Image.find_by(id: params["id"])
     render "show.json.jb"
+  end
+
+  def destroy
+    authenticate_user
+    image = current_user.artists.find_by(id: params["artist_id"]).images.find_by(id: params["id"])
+    image.destroy
+    render json: { message: "Image deleted" }
   end
 end
