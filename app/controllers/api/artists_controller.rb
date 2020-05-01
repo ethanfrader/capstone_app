@@ -4,7 +4,8 @@ class Api::ArtistsController < ApplicationController
     render "index.json.jb"
   end
 
-  def create #this needs a user_id validation, need user authorization first
+  def create #authenticates that user is signed in
+    authenticate_user
     @artist = Artist.new(
       name: params["name"],
       bio: params["bio"],
@@ -25,8 +26,10 @@ class Api::ArtistsController < ApplicationController
     render "show.json.jb"
   end
 
+  #only allows signed in users to eidt their own artist pages
   def edit
-    @artist = Artist.find_by(id: params["id"])
+    authenticate_user
+    @artist = current_user.artists.find_by(id: params["id"])
     @artist.name = params["name"] || @artist.name
     @artist.bio = params["bio"] || @artist.bio
     @artist.location = params["location"] || @artist.location
@@ -40,8 +43,9 @@ class Api::ArtistsController < ApplicationController
     end
   end
 
+  #allows only signed in users to delete their own artists
   def destroy
-    artist = Artist.find_by(id: params["id"])
+    artist = current_user.artists.find_by(id: params["id"])
     artist.destroy
     render json: { message: "Artist successfully deleted!" }
   end
