@@ -7,4 +7,18 @@ class Api::MessagesController < ApplicationController
     @messages = @messages.sort_by(&:created_at) #sort them by creation
     render "index.json.jb"
   end
+
+  def create
+    @messages = Message.new(
+      user_id: current_user.id,
+      artist_id: current_user.artists.find_by(id: params["artist_id"]).id,
+      text: params["text"],
+      recipient_id: params["recipient_id"],
+    )
+    if @message.save
+      render "index.json.jb"
+    else
+      render json: { errors: @message.errors.full_messages }
+    end
+  end
 end

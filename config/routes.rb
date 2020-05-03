@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     delete "/posts/:id" => "posts#destroy"
 
     get "/messages" => "messages#index"
+    post "/messages" => "messages#create"
 
     get "/images" => "images#index"
     post "/images" => "images#create"
