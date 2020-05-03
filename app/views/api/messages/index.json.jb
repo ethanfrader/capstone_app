@@ -1,9 +1,10 @@
 @messages.map do |message|
+  recipient = Artist.find_by(id: message.recipient_id)
   {
     id: message.id,
     text: message.text,
     user: message.user,
     artist: message.artist,
-    recipient_id: message.recipient_id,
+    recipient: recipient,
   }
 end
