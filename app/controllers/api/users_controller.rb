@@ -1,4 +1,5 @@
 class Api::UsersController < ApplicationController
+  before_action :authenticate_user
   #allows to search for all users
   def index
     @users = User.all
