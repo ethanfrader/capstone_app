@@ -10,7 +10,7 @@ class Api::PostsController < ApplicationController
   def create
     @post = Post.new(
       text: params["text"],
-      artist_id: current_user.aritists.find_by(artist_id: params["artist_id"]), #should come from current_artist
+      artist_id: params["artist_id"], #should come from current_artist
       user_id: current_user.id,
     )
     if @post.save

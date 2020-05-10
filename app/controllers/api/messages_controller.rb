@@ -5,6 +5,7 @@ class Api::MessagesController < ApplicationController
     @messages = current_user.messages
     @messages << Message.all.where(recipient_id: params["artist_id"].to_i) #grab received messages using artist_id param
     @messages = @messages.sort_by(&:created_at) #sort them by creation
+    @messages = @messages.reverse
     render "index.json.jb"
   end
 
