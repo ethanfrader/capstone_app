@@ -15,6 +15,7 @@ class Api::ArtistsController < ApplicationController
       email: params["email"],
     )
     if @artist.save
+      @artist_user = ArtistUser.create!(user_id: current_user.id, artist_id: @artist.id, privileges: "default")
       render "show.json.jb"
     else
       render json: { errors: @artist.errors.full_messages }
