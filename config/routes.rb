@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     get "/images" => "images#index"
     post "/images" => "images#create"
     get "/images/:id" => "images#show"
+    get "/images/:id/edit" => "images#edit"
     delete "/images/:id" => "images#destroy"
 
     get "/music-links" => "music_links#index"

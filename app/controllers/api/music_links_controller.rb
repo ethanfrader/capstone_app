@@ -23,6 +23,16 @@ class Api::MusicLinksController < ApplicationController
     render "show.json.jb"
   end
 
+  def edit
+    @music_link = MusicLink.find_by(id: params["id"])
+    @music_link.url = params["url"] || @music_link.url
+    if @music_link.save
+      render "show.json.jb"
+    else
+      render json: { errors: @music_link.errors.full_messages }
+    end
+  end
+
   def destroy
     authenticate_user
     music_link = current_user.artists.find_by(id: params["artist_id"]).music_links.find_by(id: params["id"])
