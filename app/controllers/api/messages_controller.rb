@@ -15,6 +15,7 @@ class Api::MessagesController < ApplicationController
     received_messages.each do |r_message|
       @messages << r_message
     end
+    @messages = @messages.uniq
     @messages = @messages.sort_by(&:created_at) #sort them by creation
     @messages = @messages.reverse
     render "index.json.jb"
