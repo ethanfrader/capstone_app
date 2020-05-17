@@ -4,6 +4,8 @@ class Api::PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @posts = @posts.sort_by(&:created_at)
+    @posts = @posts.reverse
     render "index.json.jb"
   end
 
