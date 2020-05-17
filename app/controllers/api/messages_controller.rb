@@ -6,7 +6,7 @@ class Api::MessagesController < ApplicationController
     received_messages = []
     artists = current_user.artists
     artists.each do |artist|
-      received_messages = Message.all.where(recipient_id: artist.id.to_i)
+      received_messages = Message.where(recipient_id: artist.id.to_i)
       artist.messages.each do |message|
         @messages << message
       end
