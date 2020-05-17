@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user, except: :create
   #allows to search for all users
   def index
     @users = User.all
