@@ -22,6 +22,7 @@ class Api::MessagesController < ApplicationController
   end
 
   def create
+    @messages = []
     @message = Message.new(
       user_id: current_user.id,
       artist_id: current_user.artists.find_by(id: params["artist_id"]).id,
@@ -29,6 +30,7 @@ class Api::MessagesController < ApplicationController
       recipient_id: params["recipient_id"],
     )
     if @message.save
+      @messages << @message
       render "index.json.jb"
     else
       render json: { errors: @message.errors.full_messages }
