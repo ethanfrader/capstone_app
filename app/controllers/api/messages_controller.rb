@@ -7,13 +7,12 @@ class Api::MessagesController < ApplicationController
     artists = current_user.artists
     artists.each do |artist|
       received_messages = Message.where(recipient_id: artist.id.to_i)
+      received_messages.each do |r_message|
+        @messages << r_message
+      end
       artist.messages.each do |message|
         @messages << message
       end
-    end
-    # received_messages = Message.all.where(recipient_id: params["artist_id"].to_i) #grab received messages using artist_id param
-    received_messages.each do |r_message|
-      @messages << r_message
     end
     @messages = @messages.uniq
     @messages = @messages.sort_by(&:created_at) #sort them by creation
