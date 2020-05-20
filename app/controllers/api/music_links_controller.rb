@@ -6,10 +6,10 @@ class Api::MusicLinksController < ApplicationController
 
   def create
     authenticate_user
-    current_artist = current_user.artists.find_by(id: ["artist_id"])
+    # current_artist = current_user.artists.find_by(id: ["artist_id"])
     @music_link = MusicLink.new(
       url: params["url"],
-      artist_id: current_artist.id,
+      artist_id: params["artist_id"],
     )
     if @music_link.save
       render "show.json.jb"
