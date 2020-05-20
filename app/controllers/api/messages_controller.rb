@@ -24,7 +24,7 @@ class Api::MessagesController < ApplicationController
     @messages = []
     @message = Message.new(
       user_id: current_user.id,
-      artist_id: current_user.artists.find_by(id: params["artist_id"]).id,
+      artist_id: params["artist_id"],
       text: params["text"],
       recipient_id: params["recipient_id"],
     )
